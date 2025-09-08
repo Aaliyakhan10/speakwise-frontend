@@ -1,12 +1,39 @@
-# React + Vite
+# SpeakWise – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SpeakWise is a web application designed to help users improve their communication skills effortlessly. Whether you are preparing for a presentation, practicing a speech, or simply want to sound more confident in everyday conversation, SpeakWise provides real-time analysis and feedback to enhance your speaking potential.
 
-Currently, two official plugins are available:
+The frontend is built using **React.js** and **Tailwind CSS** to deliver a clean, responsive, and user-friendly interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Real-time speech analysis UI
+- Displays sentiment, emotion, intent, clarity, speech pace, grammar mistakes, filler words, and topics
+- Buttons to Start, Pause, Stop & Analyse, and Reset
+- Responsive design for desktop and mobile
+
+---
+
+## 🛠️ Tech Stack
+
+- **React.js** – Component-based frontend  
+- **Tailwind CSS** – Utility-first CSS framework  
+
+---
+## 🖼️ Screenshots
+
+### Hero Section 1  
+
+<img src="./screenshots/img1.png" alt="Description" width="800" height="450" />
+<img src="./screenshots/img2.png" alt="Description" width="800" height="450" />
+<img src="./screenshots/img3.png" alt="Description" width="800" height="450" />
+<img src="./screenshots/img4.png" alt="Description" width="800" height="450" />
+## 🚀 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Aaliyakhan10/speakwise-frontend
+   cd speakwise-frontend
+   npm install
+   npm start
