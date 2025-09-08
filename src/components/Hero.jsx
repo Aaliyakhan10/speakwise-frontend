@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
 import { sendTranscriptToBackend } from '../api';
 import '../index.css';
+import axios from 'axios';
 const initialResponse={
     sentiment: '',
   emotion: '',
@@ -40,6 +41,29 @@ const Hero = () => {
       transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
     }
   }, [transcript]);
+
+
+useEffect(() => {
+  const checkHealth = async () => {
+    const api_url = `${import.meta.env.VITE_BACKEND_URL}/health`;
+
+    try {
+      const res = await axios.get(api_url, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error backend:", error);
+    }
+  };
+
+  checkHealth();
+}, []);
+
+  
 
   const startListening = () => {
     // resetTranscript();
