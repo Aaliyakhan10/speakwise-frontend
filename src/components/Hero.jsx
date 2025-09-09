@@ -30,10 +30,12 @@ const Hero = () => {
   const [aiResponse, setAiResponse] = useState(initialResponse);
    const [isLoading, setIsLoading] = useState(false);
 
+const Speech = window.SpeechRecognition || window.webkitSpeechRecognition || browserSupportsSpeechRecognition;
 
-  if (!browserSupportsSpeechRecognition) {
-    return <p>Your browser does not support speech recognition.</p>;
-  }
+if (!Speech) {
+  alert("Speech Recognition is not supported in this browser.");
+}
+
 
   useEffect(() => {
   
@@ -48,11 +50,7 @@ useEffect(() => {
     const api_url = `${import.meta.env.VITE_BACKEND_URL}/health`;
 
     try {
-      const res = await axios.get(api_url, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await axios.get(api_url);
 
       console.log(res.data);
     } catch (error) {
