@@ -40,7 +40,7 @@ const Hero = () => {
         checkAndRequestPermission();
       }, []);
 
-const Speech = window.SpeechRecognition || window.webkitSpeechRecognition || browserSupportsSpeechRecognition;
+const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (!Speech) {
   alert("Speech Recognition is not supported in this browser.");
@@ -48,6 +48,7 @@ if (!Speech) {
 
 
   useEffect(() => {
+    console.log("Transcript updated:", transcript);
     setTrans(transcript);
     if (transcriptRef.current) {
       transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
@@ -76,6 +77,7 @@ useEffect(() => {
   
 
   const startListening = () => {
+     console.log("startListening called");
 
     SpeechRecognition.startListening({ continuous: true, language: 'en-IN' });
   
