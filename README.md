@@ -3,6 +3,7 @@
 SpeakWise is a web application designed to help users improve their communication skills effortlessly. Whether you are preparing for a presentation, practicing a speech, or simply want to sound more confident in everyday conversation, SpeakWise provides real-time analysis and feedback to enhance your speaking potential.
 
 The frontend is built using **React.js** and **Tailwind CSS** to deliver a clean, responsive, and user-friendly interface.
+(Do not work peroperly in Mobile).
 
 ---
 
