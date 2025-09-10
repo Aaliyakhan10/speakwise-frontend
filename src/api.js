@@ -21,3 +21,16 @@ export const sendTranscriptToBackend = async (transcript) => {
     throw error;
   }
 };
+
+export async function requestMicPermission() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+      
+        console.log("Microphone access granted:", stream);
+        return true;
+      } catch (err) {
+      
+        console.error("Microphone access denied or error:", err);
+        return false;
+      }
+    }

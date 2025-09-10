@@ -4,7 +4,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 // ✅ Import Font Awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
-import { sendTranscriptToBackend } from '../api';
+import { sendTranscriptToBackend , requestMicPermission } from '../api';
 import '../index.css';
 import axios from 'axios';
 const initialResponse={
@@ -29,6 +29,16 @@ const Hero = () => {
   const transcriptRef = useRef(null);
   const [aiResponse, setAiResponse] = useState(initialResponse);
    const [isLoading, setIsLoading] = useState(false);
+   const [trans, setTrans] = useState(transcript);
+       const [hasMicPermission, setHasMicPermission] = useState(false);
+
+      useEffect(() => {
+        const checkAndRequestPermission = async () => {
+          const granted = await requestMicPermission();
+          setHasMicPermission(granted);
+        };
+        checkAndRequestPermission();
+      }, []);
 
 const Speech = window.SpeechRecognition || window.webkitSpeechRecognition || browserSupportsSpeechRecognition;
 
@@ -38,10 +48,11 @@ if (!Speech) {
 
 
   useEffect(() => {
-  
+    setTrans(transcript);
     if (transcriptRef.current) {
       transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
     }
+  
   }, [transcript]);
 
 
@@ -61,17 +72,20 @@ useEffect(() => {
   checkHealth();
 }, []);
 
+
   
 
   const startListening = () => {
-    // resetTranscript();
+
     SpeechRecognition.startListening({ continuous: true, language: 'en-IN' });
+  
     setIsListening(true);
     setAiResponse(initialResponse);
     setIsAnalysing(false);
   };
 
   const stopListening = async () => {
+     setTrans(transcript);
     SpeechRecognition.stopListening();
     setIsListening(false);
     console.log(transcript);
@@ -90,12 +104,16 @@ useEffect(() => {
   };
 
   const pauseListening = () => {
+    
     SpeechRecognition.stopListening();
     setIsListening(false);
   };
 const resetListening = () => {
+   setTrans('');
     resetTranscript();
     setIsListening(false);
+    setAiResponse(initialResponse);
+    setIsAnalysing(false);
   };
   return (
     <div className='w-full  flex flex-col items-center justify-start'>
@@ -120,15 +138,15 @@ const resetListening = () => {
       </p>
 
       {/*  Transcript Box */}
-      <div
+     <div
         ref={transcriptRef}
-        className="w-[50%] h-[50%] bg-teal-300 my-5 overflow-y-auto p-4 rounded"
+        className="w-[90%] h-64 md:max-h-[60vh] overflow-y-scroll bg-teal-300 my-5 p-4 rounded "
       >
-        {transcript || "Start speaking..."}
+        {trans || "Start speaking..."}
       </div>
 
       {/*  Controls */}
-      <div>
+      <div className='grid grid-cols-2 md:grid-cols-4 gap-4 p-4'>
         <button disabled={isListening} onClick={startListening}   className={`p-3 m-4 rounded-2xl text-2xl font-semibold bg-teal-100 text-blue-950 transition-opacity duration-300 ${
     isListening ? 'opacity-50 cursor-not-allowed' : ''
   }`}>
@@ -150,6 +168,7 @@ const resetListening = () => {
           Reset
         </button>
       </div>
+       
      {isAnalysing ?
       (<div className="mt-6 w-[60%] bg-white p-4 shadow-md rounded text-gray-800">
   <h2 className="text-xl font-bold mb-2">AI Analysis</h2>
