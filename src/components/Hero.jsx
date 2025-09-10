@@ -79,7 +79,7 @@ useEffect(() => {
   const startListening = () => {
      console.log("startListening called");
 
-    SpeechRecognition.startListening({ continuous: true, language: 'en-IN' });
+    SpeechRecognition.startListening({ continuous: false, language: 'en' });
   
     setIsListening(true);
     setAiResponse(initialResponse);
