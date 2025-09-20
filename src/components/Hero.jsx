@@ -220,25 +220,29 @@ const Hero = () => {
 
       <div
         ref={transcriptRef}
-        className="w-[90%] h-64 md:max-h-[60vh] overflow-y-scroll bg-teal-300 my-5 p-4 rounded"
-      >
-        {transcript || 'Start speaking...'}
+        className="w-[90%] h-64 md:max-h-[60vh] overflow-y-scroll bg-teal-100 my-5 p-4 rounded-2xl overflow-auto scrollbar-hide "
+      > {
+        isListening && transcript === '' ? (
+          <p className="text-teal-500 italic">Listening...</p>
+        ) :<p className="text-teal-500 italic">your transcript will appear here...</p> 
+      }
+        {transcript}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-        <button disabled={isListening} onClick={startListening} className="btn">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-4 sm:p-1">
+        <button disabled={isListening || isAnalysing} onClick={startListening} className="  min-lg:text-3xl min-lg:p-3 bg-teal-200 hover:bg-teal-300 p-1 rounded-2xl">
           Start
         </button>
-        <button disabled={!isListening} onClick={stopListening} className="btn">
+        <button disabled={!isListening} onClick={stopListening} className="  min-lg:text-3xl min-lg:p-3 bg-teal-200 hover:bg-teal-300 p-1 rounded-2xl">
           Stop & Analyse
         </button>
-        <button disabled={isListening} onClick={resetListening} className="btn">
+        <button  onClick={resetListening} className="  min-lg:text-3xl min-lg:p-3 bg-teal-200 hover:bg-teal-300 p-1 rounded-2xl">
           Reset
         </button>
       </div>
 
       {isAnalysing && (
-        <div className="mt-6 w-[60%] bg-white p-4 shadow-md rounded text-gray-800">
+        <div className="mt-6 w-[90%] bg-white p-4 shadow-md rounded text-teal-800 text-2xl">
           <h2 className="text-xl font-bold mb-2">AI Analysis</h2>
           <p><strong>Sentiment:</strong> {aiResponse.sentiment}</p>
           <p><strong>Emotion:</strong> {aiResponse.emotion}</p>

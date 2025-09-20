@@ -16,18 +16,10 @@
 }
 
 
-.btn {
-  padding: 0.75rem;
-  margin: 1rem;
-  border-radius: 1rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  background-color: #ccfbf1; /* bg-teal-100 */
-  color: #1e3a8a; /* text-blue-950 */
-  transition: opacity 0.3s;
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+    .scrollbar-hide {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, and Opera */
+    }
