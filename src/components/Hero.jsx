@@ -279,6 +279,8 @@ const Hero = () => {
           </div>
         </div>
       )}
+      <script async="async" data-cfasync="false" src="//pl27686786.revenuecpmgate.com/e368d2dd8e67a7337067d7719385532e/invoke.js"></script>
+<div id="container-e368d2dd8e67a7337067d7719385532e"></div>
     </div>
   );
 };
