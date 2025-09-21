@@ -241,8 +241,8 @@ const Hero = () => {
         </button>
       </div>
 
-      {isAnalysing && (
-        <div className="mt-6 w-[90%] bg-white p-4 shadow-md rounded text-teal-800 text-2xl">
+      {!isAnalysing && (
+        <div className="mt-6 w-[90%] bg-white p-4 shadow-md rounded text-teal-800  min-lg:text-3xl">
           <h2 className="text-xl font-bold mb-2">AI Analysis</h2>
           <p><strong>Sentiment:</strong> {aiResponse.sentiment}</p>
           <p><strong>Emotion:</strong> {aiResponse.emotion}</p>
